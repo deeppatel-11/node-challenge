@@ -46,6 +46,9 @@ export async function getExpenseDetails(expenseId, searchValue, orderBy, sort, p
     throw BadRequest('The page and pageSize properties are both required for paging.');
   }
   else if (page && pageSize){
+    if (isNaN(+page) ||isNaN(+pageSize)){
+      throw BadRequest('The page and pageSize properties must be Numbers.');  
+    }
     let startIndex = (page-1)* pageSize;
     let endIndex = (page * pageSize);
     if(endIndex >= rawExpense.length){
