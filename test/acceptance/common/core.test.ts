@@ -1,4 +1,5 @@
 import { Api } from '../utils/api';
+import * as ExpenseService from '../../../packages/domains/expense/model';
 
 describe('Given that we have a healthy service', () => {
   describe('Healtcheck', () => {
@@ -56,8 +57,28 @@ describe('API testing for Expenses', () => {
     });
 
     test('expenses/v1/get-expenses-detail/ should ask for expenseId', (done) => {
+      jest.setTimeout(20000);
+      const date = new Date('2021-09-21 20:57:40.021428');
+      jest.spyOn(ExpenseService, 'getExpenseDetails').mockResolvedValue([{id:'id', userId:'userid',
+       dateCreated: date ,merchantName:'Deep', amountInCents :'8000', currency:"DKK", status:'pending'}])
       Api.get('/expenses/v1/get-expenses-detail/')
-        .expect(200, done);
+        .set('expenseId', '3e920f54-49df-4d0b-b11b-e6f08e3a2dca')
+        .expect(200)
+        .then((res) =>{
+          console.log(res)
+          return expect(res).toEqual(1);
+        });
+    });
+
+    test('expenses/v1/get-expenses-detail/ should ask for expenseId', (done) => {
+      Api.get('/expenses/v1/get-expenses-detail/')
+        .set('expenseId', '3e920f54-49df-4d0b-b11b-e6f08e3a2dca')
+        .expect(200)
+        .then((res) =>{
+          return expect(res).toEqual([
+            "{\"merchantName\":\"Cafe 22\",\"amountInCents\":8000,\"currency\":\"DKK\",\"status\":\"pending\"}"
+        ]);
+        });
     });
   });
 });
