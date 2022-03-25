@@ -1,6 +1,6 @@
-import { User } from './types';
+import { User} from './types';
 
-const publicFields = ['first_name', 'last_name', 'company_name'];
+const publicUserFields = ['firstName', 'lastName', 'companyName'];
 
 export function capitalize(word) {
   const str = `${word}`;
@@ -8,15 +8,15 @@ export function capitalize(word) {
 }
 
 export function secureTrim(user: User): string {
-  return JSON.stringify(user, publicFields);
+  return JSON.stringify(user, publicUserFields);
 }
 
 export function format(rawUser): User {
   return {
     id: rawUser.id,
-    first_name: capitalize(rawUser.first_name),
-    last_name: capitalize(rawUser.last_name),
-    company_name: rawUser.company_name,
+    firstName: capitalize(rawUser.first_name),
+    lastName: capitalize(rawUser.last_name),
+    companyName: rawUser.company_name,
     ssn: rawUser.ssn,
   };
 }
