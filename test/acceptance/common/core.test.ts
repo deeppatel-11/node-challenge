@@ -46,3 +46,18 @@ describe('Given that we have a healthy service', () => {
     });
   });
 });
+
+
+describe('API testing for Expenses', () => {
+  describe('get-expenses-details', () => {
+    test('expenses/v1/get-expenses-detail/ route should return positively', (done) => {
+      Api.get('expenses/v1/get-expenses-detail/')
+        .expect(200, done);
+    });
+
+    test('expenses/v1/get-expenses-detail/ should ask for expenseId', (done) => {
+      Api.get('/expenses/v1/get-expenses-detail/')
+        .expect(200, done);
+    });
+  });
+});
