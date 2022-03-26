@@ -82,6 +82,7 @@ Happy hacking 😁!
  
 Routes Examples:
 ***"http://localhost:9001/expenses/v1/get-expense-details?searchValue=processed&page=2&pageSize=2"***
+
 <img width="455" alt="image" src="https://user-images.githubusercontent.com/60020321/160188625-21b0655f-5796-4f07-a2c6-d2098ff30530.png">
 
 ***"http://localhost:9001/expenses/v1/get-expense-details?expenseId=3e920f54-49df-4d0b-b11b-e6f08e3a2dca"***
